@@ -6,23 +6,23 @@
 /*   By: cnavone <cnavone@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:48:21 by cnavone           #+#    #+#             */
-/*   Updated: 2020/11/21 13:48:43 by cnavone          ###   ########lyon.fr   */
+/*   Updated: 2020/11/24 14:32:16 by cnavone          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memset(void *s, int c, size_t n)
+void		*ft_memset(void *b, int c, size_t len)
 {
-	char	*p;
+	char	*ptr;
 	size_t	i;
 
-	p = s;
+	ptr = b;
 	i = 0;
-	while (i < n)
+	while (i < len)
 	{
-		p[i] = (unsigned char)c;
+		ptr[i] = (unsigned char)c;
 		i++;
 	}
-	return (s);
+	return (b);
 }

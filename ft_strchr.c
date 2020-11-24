@@ -6,7 +6,7 @@
 /*   By: cnavone <cnavone@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 17:09:32 by cnavone           #+#    #+#             */
-/*   Updated: 2020/11/18 18:34:37 by cnavone          ###   ########lyon.fr   */
+/*   Updated: 2020/11/23 16:11:00 by cnavone          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char		*ft_strchr(const char *s, int c)
 {
 	char	*str;
 
-	str = (const char*)s;
+	str = (char*)s;
 	while (*str != '\0')
 		if (*str == c)
 			return (str);

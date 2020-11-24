@@ -6,11 +6,12 @@
 /*   By: cnavone <cnavone@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 16:07:52 by cnavone           #+#    #+#             */
-/*   Updated: 2020/11/19 16:07:58 by cnavone          ###   ########lyon.fr   */
+/*   Updated: 2020/11/23 11:18:22 by cnavone          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 int		ft_atoi(const char *str)
 {
 	int		sign;
