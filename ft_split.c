@@ -6,63 +6,81 @@
 /*   By: cnavone <cnavone@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 16:36:25 by cnavone           #+#    #+#             */
-/*   Updated: 2020/11/23 14:38:48 by cnavone          ###   ########lyon.fr   */
+/*   Updated: 2020/11/25 02:39:21 by cnavone          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_nbrsubstr(const char *s, char c)
+static int		ft_wordcnt(const char *str, char c)
 {
-	unsigned int	i;
-	int				count;
+	int i;
+	int count;
 
 	i = 0;
 	count = 0;
-	while (s[i])
+	if (!str)
+		return (0);
+	while (str[i] != '\0')
 	{
-		while (s[i] == c)
+		while (str[i] != c && str[i] != '\0')
 			i++;
-		if (s[i])
-			count++;
-		while (s[i] != c && s[i])
+		while (str[i] == c && str[i] != '\0')
 			i++;
+		count++;
 	}
 	return (count);
 }
 
-static char		**ft_special_case(char **res, const char *s)
+static int		ft_wordlen(const char *str, char c)
 {
-	res[0] = ft_strdup(s);
-	res[1] = 0;
-	return (res);
+	int len;
+
+	len = 0;
+	while (*str != c)
+	{
+		str++;
+		len++;
+	}
+	return (len);
 }
 
-char			**ft_split(char const *s, char c)
+static char		**ft_copyover(char **output, const char *s, char c)
 {
-	char	**res;
-	int		start;
-	int		end;
-	int		i_tab;
+	int		j;
+	int		k;
 
-	start = 0;
-	end = 0;
-	i_tab = 0;
-	if (!(res = (char **)malloc(sizeof(char *) * (ft_nbrsubstr(s, c) + 1))))
-		return (0);
-	while (i_tab != ft_nbrsubstr(s, c))
+	j = 0;
+	while (*s != '\0')
 	{
-		while (s[start] == c)
-			start++;
-		if (!s[start])
-			return (ft_special_case(res, s));
-		end = start;
-		while (s[end] != c && s[end])
-			end++;
-		res[i_tab] = ft_substr(s, start, (end - start));
-		i_tab++;
-		start = end;
+		while (*s == c && *s != '\0')
+			s++;
+		if (*s == '\0')
+			continue ;
+		output[j] = malloc(sizeof(char*) * ft_wordlen(s, c) + 1);
+		if (output[j] == NULL)
+			return (NULL);
+		k = 0;
+		while (*s != c && *s != '\0')
+		{
+			output[j][k] = *s;
+			k++;
+			s++;
+		}
+		output[j][k] = '\0';
+		j++;
 	}
-	res[i_tab] = 0;
-	return (res);
+	output[j] = NULL;
+	return (output);
+}
+
+char			**ft_split(const char *s, char c)
+{
+	char	**output;
+
+	output = malloc(sizeof(char*) * (ft_wordcnt(s, c) + 1));
+	if (s == NULL || output == NULL)
+		return (NULL);
+	output = ft_copyover(output, s, c);
+	return (output);
 }
